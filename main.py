@@ -16,6 +16,10 @@ pg.init() # Запустить внутрнние команды pygame
 screen = pg.display.set_mode((640, 480))
 painter = pg.draw # Художник (который умеет рисовать простые фигуры)
 
+bone_1 = randint(1, 6)
+bone_2 = randint(1, 6)
+print(bone_1, bone_2)
+
 running = True
 while running:
     screen.fill(WHITE) # Закрашиваем весь экран цветом WHITE
@@ -56,7 +60,3 @@ while running:
     pg.display.update() # Обновляем экран
     
 pg.quit() # Остановть все внутрнние команды pygame
-
-bone_1 = randint(1, 6)
-bone_2 = randint(1, 6)
-print(bone_1, bone_2)
