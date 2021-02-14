@@ -27,7 +27,6 @@ bone_1 = randint(1, 6)
 bone_2 = randint(1, 6)
 print(bone_1, bone_2)
 
-
 # 1
 def one(bone):
     painter.circle(screen, bone.color, \
@@ -63,6 +62,8 @@ def six(bone):
     painter.circle(screen, bone.color, \
                    (bone.x+bone.w/2, bone.y+3*bone.h/4), 15, 3)
 
+counter_ticks = 0
+nedeed_generate = False
 running = True
 while running:
     screen.fill(WHITE) # Закрашиваем весь экран цветом WHITE
@@ -74,12 +75,25 @@ while running:
         if event.type == pg.KEYDOWN: # Собитие нажатия на к-л клавишу
             if event.key == pg.K_ESCAPE: # Нажатие на клавишу ESCAPE
                 running = False
+            if event.key == pg.K_SPACE:
+                if nedeed_generate == False:
+                    nedeed_generate = True
+                else: nedeed_generate = False
     
     painter.rect(screen, Bone1.color, \
                  (Bone1.x, Bone1.y, Bone1.w, Bone1.h), Bone1.border, 10)
     painter.rect(screen, Bone2.color, \
                  (Bone2.x, Bone2.y, Bone2.w, Bone2.h), Bone2.border, 10)
     
+    if nedeed_generate:
+        bone_1 = randint(1, 6)
+        bone_2 = randint(1, 6)
+        pg.time.delay(55)
+        counter_ticks += 1
+        if counter_ticks == 20:
+            nedeed_generate = False
+            counter_ticks = 0
+        
     if bone_1 == 1: one(Bone1)
     elif bone_1 == 2: two(Bone1)
     elif bone_1 == 3: three(Bone1)
